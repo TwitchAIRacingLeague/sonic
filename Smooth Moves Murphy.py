@@ -68,7 +68,9 @@ def main():
     actions_by_value = {"B" : 2**11, "A" : 2**10, "START" : 2**8, "UP" : 2**7, "DOWN" : 2**6, "LEFT" : 2**5, "RIGHT" : 2**4, "C" : 2**3, "Y" : 2**2, "X" : 2**1, "Z" : 2**0} # "MODE" : 2**9
     env = retro.make(game='SonicTheHedgehog2-Genesis')
     obs = env.reset()
-    
+    env.render()
+    print ("press enter to start")
+    input()
     while True:
         action_sequence = actions_available(actions_by_value)
         for i in action_sequence:
@@ -77,6 +79,7 @@ def main():
             action = list(map(int,list(str(binary_value).zfill(12))))
             
             obs, rew, done, info = env.step(action)
+            
            # time.sleep(1.0/60.0)
             env.render()
             if done:

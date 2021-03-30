@@ -10,10 +10,14 @@ def main():
               'MetropolisZone.Act2', 'MetropolisZone.Act3', #'WingFortressZone',
               'MysticCaveZone.Act1', 'EmeraldHillZone.Act1', 'MysticCaveZone.Act2']
 
-    env = retro.make(game='SonicTheHedgehog2-Genesis', state=levels[random.randint(0,len(levels)-1)])
+    env = retro.make(game='SonicTheHedgehog2-Genesis') #, state=levels[random.randint(0,len(levels)-1)])
     obs = env.reset()
+    env.render()
+    print ("press enter to start")
+    input()
     action = [0] * env.action_space.shape[0]
     last_time = datetime.now()
+    
     while True:
         current_time = datetime.now()
         delta =  (current_time - last_time)
@@ -28,7 +32,7 @@ def main():
         time.sleep(.01)
         if done:
             env.close()
-            env = retro.make(game='SonicTheHedgehog2-Genesis', state=levels[random.randint(0,len(levels)-1)])
+            env = retro.make(game='SonicTheHedgehog2-Genesis') #, state=levels[random.randint(0,len(levels)-1)])
             obs = env.reset()
     env.close()
 
